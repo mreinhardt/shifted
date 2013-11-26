@@ -1,14 +1,17 @@
 from collections import defaultdict
+import errno
 import json
+import os
 
 
 class KeyColumnValueStore(object):
     def __init__(self, path=None):
-        # even if path doesn't exist, will still save there
+        # even if path doesn't exist yet, will still save there
         self.path = path
 
         # load from path if possible
         if path is not None:
+            self.dirname = os.path.dirname(path)
             try:
                 with open(path, 'r') as disk_store:
                     self._store = defaultdict(
@@ -72,5 +75,16 @@ class KeyColumnValueStore(object):
     def _save(self):
         """ save store to disk at path """
         if self.path is not None:
+
+            # create dir if needed
+            if self.dirname and not os.path.exists(self.dirname):
+                try:
+                    os.makedirs(self.dirname)
+                except OSError as e:
+                    if e.errno == errno.EEXIST and os.path.isdir(self.dirname):
+                        pass
+                    else:
+                        raise
+
             with open(self.path, 'w') as disk_store:
                 disk_store.write(json.dumps(self._store))
