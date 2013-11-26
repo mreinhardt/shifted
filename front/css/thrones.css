@@ -25,6 +25,7 @@ h1 { font: 32px/1.5 Georgia, serif; }
 #thrones table {
     border-collapse: collapse;
     clear: both;
+    width: 100%;
 }
 #thrones table thead {
     background: #444;
