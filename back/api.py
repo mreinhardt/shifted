@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import argparse
+import json
 
-from flask import Flask, jsonify, abort, request
+from flask import Flask, jsonify, abort, request, make_response
 
 from src.KeyColumnValueStore import KeyColumnValueStore
 
@@ -17,10 +18,10 @@ def index():
 
 @api.route('/api/')
 def api_routes():
-    return """/api/keys/ (GET)
-/api/key/<kev>/ (GET, DELETE)
-/api/key/<key>/col/<col>/ (GET, POST, DELETE)
-/api/slice/key/<key>/?start=<start>&stop=<stop> (GET)
+    return """/api/keys/ (GET);
+/api/key/[key]/ (GET, DELETE);
+/api/key/[key]/col/[col]/ (GET, POST, DELETE);
+/api/slice/key/[key]/?start=[start]&stop=[stop] (GET);
 """
 
 
@@ -47,9 +48,14 @@ def key(key):
 
 @api.route('/api/key/<key>/col/<col>/', methods=['GET', 'POST', 'DELETE'])
 def key_col(key, col):
-    if request.method == 'POST' and request.json and 'value' in request.json:
-        kcvs.set(key, col, request.json['value'])
-        value = request.json['value']
+    if request.method == 'POST':
+        raw_data = request.get_data()
+        if raw_data:
+            value = json.loads(raw_data).get('value', None)
+            kcvs.set(key, col, value)
+        else:
+            return make_response(
+                jsonify({'error': 'No data received in POST'}), 400)
     elif request.method == 'GET':
         value = kcvs.get(key, col)
     elif request.method == 'DELETE':
