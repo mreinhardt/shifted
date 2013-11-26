@@ -2,7 +2,7 @@ $font_dir: '../fonts/';
 
 @function _simple-font-url($name, $extension)
 {
-    @return url($font_dir + $name + '-webfont.' + $extension);
+    @return url($font_dir + $name + '.' + $extension);
 }
 
 @function _full-font-url($name, $extension, $format, $hash: '')
