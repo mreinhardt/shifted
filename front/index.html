@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang='en-US'>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1'>
+
+  <title>"When you play the game of thrones you win or you die."</title>
+
+  <link rel='stylesheet' href='css/thrones.css'>
+</head>
+
+<body>
+  <div id="container">
+    <h1>"When you play the game of thrones you win or you die."</h1>
+
+    <div id='thrones'></div>
+  </div>
+
+  <script id='characters' type='ractive'>
+    <div class="filters">
+      <label for="houseFilter">Filter by House</label>
+      <input name="houseFilter" value="{{ houseFilter }}">
+    </div>
+
+    <table class='characters'>
+      <thead>
+        <tr>
+          <th class='sortable name sorted' on-tap='sort:name'>Name</th>
+          <th class='sortable house' on-tap='sort:house'>House</th>
+          <th class='sortable actor' on-tap='sort:actor'>Actor</th>
+          <th class='sortable quote' on-tap='sort:quote'>Quote</th>
+          <th class='sortable episodes' on-tap='sort:episodes'>#&nbsp;Eps</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{#sort(characters, sortCol)}}
+        <tr>
+          <td>{{ name }}</td>
+          <td>{{ house }}</td>
+          <td>{{ actor }}</td>
+          <td>{{ quote }}</td>
+          <td class='center'>{{ episodes }}</td>
+        </tr>
+        {{/end characters}}
+      </tbody>
+    </table>
+
+    <div id='insert'>
+      <h2>
+        Add More Characters
+        <small>(and notice they insert in the correct sort location)</small>
+      </h2>
+      <form on-submit='addCharacter'>
+        <div class='attr name'>
+          <label for='name'>Name</label>
+          <input type='text' name='name' value='Oberyn Martell' placeholder='Name'>
+        </div> 
+        <div class='attr house'>
+          <label for='house'>House</label>
+          <input type='text' name='house' value='Martell' placeholder='House'>
+        </div>
+        <div class='attr actor'>
+          <label for='actor'>Actor</label>
+          <input type='text' name='actor' value='Pedro Pascal' placeholder='Actor'>
+        </div>
+        <div class='attr quote'>
+          <label for='quote'>Quote</label>
+          <textarea name='quote' placeholder='Quote'>
+            I will hear you say her name, Ser, or I will chase you through all seven hells.
+          </textarea>
+        </div>
+        <div class='attr episodes'>
+          <label for='episodes'># Eps</label>
+          <input type='number' name='episodes' value='0' placeholder='Episodes' min='0' max='999' step='1'>
+        </div>
+        <div class='action'>
+          <button type='submit'>Add Character</button>
+        </div>
+      </form>
+    </div>
+  </script>
+
+  <script src='js/lib/jquery-1.10.2.min.js'></script>
+  <script src='js/lib/Ractive.min.js'></script>
+  <script src='js/thrones.js'></script>
+</body>
+</html>

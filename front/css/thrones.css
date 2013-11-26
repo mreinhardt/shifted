@@ -1,0 +1,73 @@
+/* Global */
+
+body {
+    background: #333;
+    color: #ccc;
+    font: 16px/1.5 Helvetica, Arial, sans-serif;
+}
+
+h1 { font: 32px/1.5 Georgia, serif; }
+
+.center { text-align: center; }
+
+/* Layout */
+
+#container {
+    margin: 0 auto;
+    width: 80%;
+}
+
+#thrones .filters {
+    float: right;
+    padding: 0 0 10px;
+}
+
+#thrones table {
+    border-collapse: collapse;
+    clear: both;
+}
+#thrones table thead {
+    background: #444;
+    color: #ddd;
+    font-size: 1.1em;
+}
+#thrones table thead th.sortable {
+    cursor: s-resize;
+    white-space: nowrap;
+    padding: 0 16px 0 4px;
+}
+#thrones table thead th.sortable:before {
+    content: '\21f3';
+    float: left;
+}
+#thrones table thead th.sortable.sorted:before {
+    content: '\2b07';
+    font-size: 0.7em;
+    padding: 6px 0 0;
+}
+#thrones table tbody td {
+    padding: 2px 6px;
+}
+#thrones table tbody tr {
+    border-top: 1px solid #444;
+}
+
+#insert h2 { margin-bottom: 0; padding-bottom: 0; }
+#insert h2 small { display: block; }
+#insert form { margin: 0; padding: 0; }
+#insert .attr { display: inline-block; float: left; width: 200px; }
+#insert .attr label { display: block; margin: 10px 0 0; }
+#insert .attr input { border: 0; margin: 0; padding: 2px; width: 160px; }
+#insert .attr.quote { width: 400px; }
+#insert .attr.quote textarea { width: 360px; }
+#insert .action { clear: both; padding: 20px 0;}
+#insert .action button {
+    background: green;
+    border: 0 none;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+
+    border-radius: 5px;
+}
