@@ -1,0 +1,31 @@
+$font_dir: '../fonts/';
+
+@function _simple-font-url($name, $extension)
+{
+    @return url($font_dir + $name + '-webfont.' + $extension);
+}
+
+@function _full-font-url($name, $extension, $format, $hash: '')
+{
+    @return url($font_dir + $name + '.' + $extension + $hash) format($format);
+}
+
+@mixin register-font($name)
+{
+    @font-face {
+        font-family: $name;
+        font-style: normal;
+        font-weight: normal;
+        src: _simple-font-url($name, 'eot');
+        src: _full-font-url($name, 'woff', 'embedded-opentype', '?#iefix'),
+             _full-font-url($name, 'ttf', 'truetype'),
+             _full-font-url($name, 'svg', 'esvg', '?#' + $name);
+    }
+}
+
+@mixin use-registered-font($name)
+{
+    font-family: $name, sans-serif;
+    font-weight: normal;
+    letter-spacing: 0;
+}

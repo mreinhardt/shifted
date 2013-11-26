@@ -1,0 +1,246 @@
+// Global Foundation Settings
+@import "settings";
+
+// Comment out this import if you don't want to use normalize
+@import "normalize";
+
+// Comment out this import if you are customizing you imports below
+@import "foundation";
+
+@import "_mixins";
+
+
+
+// SOLOMOGRAM
+
+// Colors
+
+$background: #fff;
+$dark-grey-font: #5a5969;
+$fb-button-bg: #4060b3;
+$google-button-bg: #e66251;
+
+// Fonts
+
+@include register-font('gloriola');
+@include register-font('gloriola-l');
+@include register-font('proximanova');
+@include register-font('proximanova-b');
+
+// Layout
+
+.top-bar {
+    background: $background;
+
+    .title-area {
+        padding: 40px;
+    }
+
+    .top-bar-section .right {
+        @include use-registered-font('proximanova-b');
+
+        background: $background;
+        color: $dark-grey-font;
+        font-size: 12px;
+        padding: 40px;
+
+        li {
+            padding: 18px 0 0; height: 45px;
+            a { background: $background; color: $dark-grey-font; letter-spacing: 1px; line-height: 18px; padding: 0; }
+        }
+        .divider {
+            border: 0 none;
+            color: #d1d2e1;
+            text-align: center;
+            width: 30px; height: 12px;
+        }
+    }
+}
+
+.social {
+    @include use-registered-font('proximanova-b');
+
+    font-size: 10px;
+    line-height: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 40px 0 0;
+
+    .button {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        letter-spacing: 1px;
+        padding: 10px;
+
+        span { display: block; padding: 8px 16px; border-radius: 1000px; }
+        img { display: inline-block; margin: 0 8px 0 0; }
+    }
+
+    .fb {
+        margin: 0 20px 0 0;
+
+        span { background: $fb-button-bg; }
+    }
+
+    .google {
+        span { background: $google-button-bg; }
+    }
+
+}
+
+.hero-wrap {
+    background: url('../assets/img/hero-wrap.jpg') 0 0 no-repeat $background;
+    height: 384px;
+
+    h1 {
+        @include use-registered-font('gloriola-l');
+
+        color: #fff;
+        font-size: 36px;
+        text-align: center;
+        margin: 0; padding: 80px 0 0;
+    }
+
+    .icons { margin: 30px 0 0; text-align: center; }
+}
+
+.platforms {
+    margin: 60px 0;
+
+    .row img { float: right; }
+}
+
+.features {
+    color: $dark-grey-font;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin: 100px 0 60px; padding: 0 60px;
+
+    ul {
+        list-style-image: url('../assets/img/check.png');
+        list-style-type: none;
+        padding: 0 0 0 50px;
+
+        li {
+            padding: 0 60px 5px 10px;
+        }
+    }
+}
+
+footer {
+    color: #868e9a;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    padding: 0 0 60px;
+
+    a { color: #868e9a; }
+    .divider { padding: 0 10px; }
+    .leftside { text-align: right; }
+    .rightside { text-align: left; }
+}
+
+// Modals
+
+.reveal-modal-bg { background: rgba(255, 255, 255, 0.9); }
+
+.reveal-modal {
+    border: 1px solid #d3d3d3;
+    color: $dark-grey-font;
+    padding: em-calc(50) em-calc(70);
+
+    box-shadow: none;
+
+    h2 {
+        @include use-registered-font('gloriola-l');
+
+        color: $dark-grey-font;
+        font-size: 36px;
+        padding: 0 0 40px;
+
+        small {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            margin: 0 0 0 30px;
+            position: relative; bottom: 3px;
+        }
+    }
+
+    form {
+        border-right: 1px dotted #666;
+        float: left;
+        padding: 0 60px 0 0;
+        width: 50%;
+
+        .row { margin: 0 0 10px; }
+        label {
+            @include use-registered-font('proximanova-b');
+
+            display: block;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0 0 10px;
+        }
+        input {
+            border: 0 none;
+            border-bottom: 1px solid $dark-grey-font;
+            display: block;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px;
+
+            box-shadow: none;
+        }
+        input:focus {
+            background: #c4eeff;
+
+            box-shadow: none;
+        }
+        button {
+            @include use-registered-font('proximanova-b');
+
+            background: #4776ef;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 16px;
+            width: 100%;
+
+            border-radius: 2px;
+            box-shadow: none;
+        }
+    }
+
+    .social {
+        float: left;
+        text-align: left;
+        margin: 0; padding: 0 0 0 60px;
+        width: 50%;
+
+        .button {
+            background: 0 none;
+            padding: 0;
+        }
+        .fb {
+            margin: 0 0 10px;
+        }
+        p {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.3em;
+            text-transform: none;
+            padding: 10px 0 0;
+        }
+    }
+
+    .close-reveal-modal {
+        background: #aeafbc;
+        color: #fff;
+        text-align: center;
+        width: 30px; height: 30px; line-height: 30px;
+        right: -15px; top: -15px;
+
+        border-radius: 50%;
+    }
+}
